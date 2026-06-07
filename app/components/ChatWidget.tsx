@@ -193,11 +193,12 @@ export default function ChatWidget() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&family=Cinzel:wght@700;800&display=swap');
 
         .cw * { box-sizing: border-box; }
         .cw { font-family: 'Outfit', sans-serif; }
         .cw-serif { font-family: 'Playfair Display', serif; }
+        .cw-title { font-family: 'Cinzel', serif; letter-spacing: 0.03em; }
 
         /* Widget open animation */
         .cw-open {
@@ -265,17 +266,18 @@ export default function ChatWidget() {
         .cw-hbtn:hover { background: rgba(255,255,255,0.15) !important; color: white !important; }
 
         /* Bot message prose */
-        .cw-prose p { margin: 0 0 0.5rem; }
+        .cw-prose { font-size: 1.08rem; line-height: 1.7; }
+        .cw-prose p { margin: 0 0 0.55rem; }
         .cw-prose p:last-child { margin: 0; }
-        .cw-prose ul { list-style: none; padding: 0; margin: 0.4rem 0; }
-        .cw-prose ul li { padding-left: 1.4rem; position: relative; margin-bottom: 0.3rem; color: #c7d2fe; }
-        .cw-prose ul li::before { content: '▸'; position: absolute; left: 0; color: #818cf8; font-size: 0.75rem; top: 2px; }
-        .cw-prose ol { padding-left: 1.4rem; margin: 0.4rem 0; }
-        .cw-prose ol li { margin-bottom: 0.3rem; color: #c7d2fe; }
-        .cw-prose strong { color: #e0e7ff; font-weight: 600; }
-        .cw-prose h1, .cw-prose h2 { font-family: 'Playfair Display', serif; font-weight: 700; margin: 0.8rem 0 0.3rem; color: #e0e7ff; font-size: 0.95rem; }
-        .cw-prose h3 { font-weight: 600; margin: 0.5rem 0 0.2rem; color: #a5b4fc; font-size: 0.85rem; }
-        .cw-prose code { background: rgba(99,102,241,0.2); color: #a5b4fc; padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.78rem; border: 1px solid rgba(99,102,241,0.3); }
+        .cw-prose ul { list-style: none; padding: 0; margin: 0.5rem 0; }
+        .cw-prose ul li { padding-left: 1.5rem; position: relative; margin-bottom: 0.4rem; color: #c7d2fe; font-size: 1.08rem; }
+        .cw-prose ul li::before { content: '▸'; position: absolute; left: 0; color: #818cf8; font-size: 0.9rem; top: 2px; }
+        .cw-prose ol { padding-left: 1.5rem; margin: 0.5rem 0; }
+        .cw-prose ol li { margin-bottom: 0.4rem; color: #c7d2fe; font-size: 1.08rem; }
+        .cw-prose strong { color: #e0e7ff; font-weight: 700; }
+        .cw-prose h1, .cw-prose h2 { font-family: 'Playfair Display', serif; font-weight: 700; margin: 0.9rem 0 0.35rem; color: #e0e7ff; font-size: 1.05rem; }
+        .cw-prose h3 { font-weight: 600; margin: 0.6rem 0 0.25rem; color: #a5b4fc; font-size: 0.95rem; }
+        .cw-prose code { background: rgba(99,102,241,0.2); color: #a5b4fc; padding: 0.15rem 0.45rem; border-radius: 4px; font-size: 0.85rem; border: 1px solid rgba(99,102,241,0.3); }
 
         /* Register input focus */
         .cw-reg-wrap:focus-within {
@@ -308,8 +310,8 @@ export default function ChatWidget() {
             className="cw-open"
             style={{
               marginBottom: 16,
-              width: 380,
-              height: 580,
+              width: 460,
+              height: 700,
               display: "flex",
               flexDirection: "column",
               borderRadius: 24,
@@ -355,11 +357,11 @@ export default function ChatWidget() {
 
               {/* Title */}
               <div style={{ flex: 1, minWidth: 0, position: "relative", zIndex: 1 }}>
-                <p className="cw-serif" style={{
-                  color: "white", fontWeight: 700, fontSize: "0.95rem",
-                  letterSpacing: "-0.01em", margin: 0, lineHeight: 1.2,
+                <p className="cw-title" style={{
+                  color: "white", fontWeight: 700, fontSize: "1.05rem",
+                  margin: 0, lineHeight: 1.2,
                 }}>
-                  E-Numerak Assistant
+                  E-Numerak <span style={{ color: "#a5b4fc" }}>Assistant</span>
                 </p>
                 <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 3 }}>
                   <span style={{
@@ -528,7 +530,7 @@ export default function ChatWidget() {
                       opacity: registerLoading ? 0.7 : 1,
                     }}
                   >
-                    {registerLoading ? "Starting session..." : "Begin Chatting →"}
+                    {registerLoading ? "Starting session..." : "Start Chatting →"}
                   </button>
                 </div>
 
@@ -578,9 +580,9 @@ export default function ChatWidget() {
                       {/* Bubble */}
                       <div style={{
                         maxWidth: "76%",
-                        padding: "10px 14px",
-                        fontSize: "0.82rem",
-                        lineHeight: 1.6,
+                        padding: "12px 16px",
+                        fontSize: "1.08rem",
+                        lineHeight: 1.7,
                         borderRadius: msg.role === "user"
                           ? "18px 18px 4px 18px"
                           : "18px 18px 18px 4px",
@@ -660,7 +662,7 @@ export default function ChatWidget() {
                         onClick={() => sendMessage(s)}
                         className="cw-chip"
                         style={{
-                          fontSize: "0.68rem",
+                          fontSize: "0.92rem",
                           padding: "5px 12px",
                           borderRadius: 20,
                           cursor: "pointer",
@@ -694,9 +696,9 @@ export default function ChatWidget() {
                     placeholder="Ask about VAT, invoices, TRN..."
                     className="cw-input"
                     style={{
-                      flex: 1, fontSize: "0.82rem", color: "white",
+                      flex: 1, fontSize: "0.93rem", color: "white",
                       border: "1px solid rgba(99,102,241,0.2)",
-                      borderRadius: 50, padding: "10px 18px",
+                      borderRadius: 50, padding: "11px 20px",
                       background: "rgba(255,255,255,0.05)",
                       fontFamily: "'Outfit', sans-serif",
                       transition: "all 0.2s",
